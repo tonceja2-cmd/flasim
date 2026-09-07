@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLASIM</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 32px;
+    }
+
+    header p {
+      margin-top: 6px;
+      color: #cbd5e1;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      font-size: 17px;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #2563eb;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f1f5f9;
+      border-radius: 12px;
+      min-height: 50px;
+      font-size: 17px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>FLASIM</h1>
+    <p>Platforma jonë e komunikimit</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+
+      <textarea id="message" placeholder="Shkruaj mesazhin këtu..."></textarea>
+
+      <button onclick="flasim()">
+        FLASIM
+      </button>
+
+      <div id="result">
+        Rezultati do të shfaqet këtu.
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function flasim() {
+      const message = document.getElementById("message").value;
+      const result = document.getElementById("result");
+
+      if (message.trim() === "") {
+        result.innerText = "Shkruaj diçka përpara se të vazhdosh.";
+        return;
+      }
+
+      result.innerText = "FLASIM mori mesazhin: " + message;
+    }
+  </script>
+
+</body>
+</html>
