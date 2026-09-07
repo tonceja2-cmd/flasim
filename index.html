@@ -24,12 +24,21 @@
       width: 100%;
       max-width: 430px;
       height: min(760px, 92vh);
+      overflow: hidden;
       background: #f6f7fb;
       border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, .28);
+      position: relative;
+    }
+
+    .screen {
+      height: 100%;
       display: flex;
       flex-direction: column;
+    }
+
+    .hidden {
+      display: none;
     }
 
     header {
@@ -41,26 +50,88 @@
       gap: 12px;
     }
 
-    .avatar {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: white;
-      color: #5b54e8;
-      display: grid;
-      place-items: center;
-      font-weight: bold;
-      font-size: 20px;
+    h1 {
+      font-size: 21px;
     }
 
-    .header-text h1 {
-      font-size: 20px;
-    }
-
-    .header-text p {
+    .subtitle {
       margin-top: 3px;
       font-size: 13px;
-      opacity: 0.85;
+      opacity: .85;
+    }
+
+    .profile-icon, .contact-avatar {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #5b54e8;
+      background: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .contacts {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+    }
+
+    .contact {
+      width: 100%;
+      border: none;
+      background: white;
+      cursor: pointer;
+      padding: 14px;
+      margin-bottom: 10px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
+    }
+
+    .contact:hover {
+      background: #f0efff;
+    }
+
+    .contact-avatar {
+      background: #e7e6ff;
+      flex-shrink: 0;
+    }
+
+    .contact-info {
+      flex: 1;
+    }
+
+    .contact-name {
+      color: #20222d;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .last-message {
+      margin-top: 4px;
+      color: #797b88;
+      font-size: 13px;
+    }
+
+    .online-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #20c56a;
+    }
+
+    .back-button {
+      border: none;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      font-size: 26px;
+      width: 28px;
     }
 
     .messages {
@@ -82,16 +153,16 @@
 
     .received {
       align-self: flex-start;
-      background: white;
       color: #20222d;
+      background: white;
       border-bottom-left-radius: 4px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, .06);
     }
 
     .sent {
       align-self: flex-end;
-      background: #5b54e8;
       color: white;
+      background: #5b54e8;
       border-bottom-right-radius: 4px;
     }
 
@@ -99,12 +170,12 @@
       display: block;
       margin-top: 5px;
       font-size: 11px;
-      opacity: 0.65;
+      opacity: .65;
     }
 
     .input-area {
-      background: white;
       border-top: 1px solid #e8e8ef;
+      background: white;
       padding: 12px;
       display: flex;
       gap: 10px;
@@ -114,59 +185,110 @@
       flex: 1;
       border: none;
       outline: none;
-      background: #f1f2f7;
       border-radius: 22px;
       padding: 13px 16px;
+      background: #f1f2f7;
       font-size: 15px;
     }
 
-    button {
+    .send-button {
       width: 48px;
       border: none;
       border-radius: 50%;
-      background: #5b54e8;
       color: white;
+      background: #5b54e8;
       cursor: pointer;
       font-size: 20px;
-    }
-
-    button:hover {
-      background: #4640c9;
     }
   </style>
 </head>
 <body>
   <main class="app">
-    <header>
-      <div class="avatar">F</div>
-      <div class="header-text">
-        <h1>FLASIM</h1>
-        <p>🟢 Online</p>
-      </div>
-    </header>
 
-    <section class="messages" id="messages">
-      <div class="message received">
-        Mirë se erdhe te FLASIM! 👋
-        <span class="time">Tani</span>
-      </div>
+    <section class="screen" id="homeScreen">
+      <header>
+        <div class="profile-icon">F</div>
+        <div>
+          <h1>FLASIM</h1>
+          <p class="subtitle">Bisedat e tua</p>
+        </div>
+      </header>
 
-      <div class="message received">
-        Shkruaj një mesazh për të filluar bisedën.
-        <span class="time">Tani</span>
+      <div class="contacts">
+        <button class="contact" onclick="openChat('Arta', 'A')">
+          <div class="contact-avatar">A</div>
+          <div class="contact-info">
+            <p class="contact-name">Arta</p>
+            <p class="last-message">Përshëndetje! Si je?</p>
+          </div>
+          <span class="online-dot"></span>
+        </button>
+
+        <button class="contact" onclick="openChat('Bledi', 'B')">
+          <div class="contact-avatar">B</div>
+          <div class="contact-info">
+            <p class="contact-name">Bledi</p>
+            <p class="last-message">Shihemi më vonë!</p>
+          </div>
+          <span class="online-dot"></span>
+        </button>
+
+        <button class="contact" onclick="openChat('Drita', 'D')">
+          <div class="contact-avatar">D</div>
+          <div class="contact-info">
+            <p class="contact-name">Drita</p>
+            <p class="last-message">Mirë se erdhe te FLASIM.</p>
+          </div>
+          <span class="online-dot"></span>
+        </button>
       </div>
     </section>
 
-    <form class="input-area" id="chatForm">
-      <input id="messageInput" type="text" placeholder="Shkruaj mesazhin..." autocomplete="off" />
-      <button type="submit" aria-label="Dërgo mesazhin">➤</button>
-    </form>
+    <section class="screen hidden" id="chatScreen">
+      <header>
+        <button class="back-button" onclick="goHome()">‹</button>
+        <div class="profile-icon" id="chatAvatar">A</div>
+        <div>
+          <h1 id="chatName">Arta</h1>
+          <p class="subtitle">🟢 Online</p>
+        </div>
+      </header>
+
+      <div class="messages" id="messages">
+        <div class="message received">
+          Përshëndetje! 👋
+          <span class="time">Tani</span>
+        </div>
+      </div>
+
+      <form class="input-area" id="chatForm">
+        <input id="messageInput" type="text" placeholder="Shkruaj mesazhin..." autocomplete="off" />
+        <button class="send-button" type="submit">➤</button>
+      </form>
+    </section>
+
   </main>
 
   <script>
+    const homeScreen = document.getElementById("homeScreen");
+    const chatScreen = document.getElementById("chatScreen");
+    const chatName = document.getElementById("chatName");
+    const chatAvatar = document.getElementById("chatAvatar");
+    const messages = document.getElementById("messages");
     const form = document.getElementById("chatForm");
     const input = document.getElementById("messageInput");
-    const messages = document.getElementById("messages");
+
+    function openChat(name, initial) {
+      chatName.textContent = name;
+      chatAvatar.textContent = initial;
+      homeScreen.classList.add("hidden");
+      chatScreen.classList.remove("hidden");
+    }
+
+    function goHome() {
+      chatScreen.classList.add("hidden");
+      homeScreen.classList.remove("hidden");
+    }
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -184,7 +306,6 @@
 
       message.appendChild(time);
       messages.appendChild(message);
-
       input.value = "";
       messages.scrollTop = messages.scrollHeight;
     });
